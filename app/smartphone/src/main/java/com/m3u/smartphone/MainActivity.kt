@@ -1,5 +1,6 @@
 package com.m3u.smartphone
 
+import com.oxyroid.m3uandroid.Utils.EncryptionHelper
 import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.compose.setContent
@@ -15,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
     private val viewModel: AppViewModel by viewModels()
 
     private val helper: Helper = Helper(this)
@@ -33,6 +35,8 @@ class MainActivity : AppCompatActivity() {
         installSplashScreen()
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
+
+        val m3uUrl = EncryptionHelper.decrypt("EncryptionHelper.decrypt("sGfG1vdbjz1jM1v9zyfoNbeTcSy6r9In4MzUj5kWEpxwDkkFUU67k71PVwmtgDdvN3ALyBpi7c0L+Cje6C/TnA==")
         setContent {
             Toolkit(helper) {
                 App(
