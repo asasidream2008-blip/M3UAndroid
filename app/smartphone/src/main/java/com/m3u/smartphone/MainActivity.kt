@@ -1,42 +1,42 @@
-package com.m3u.smartphone
+herepackage com.m3u.smartphone.ui
 
-import android.content.res.Configuration
-import android.os.Bundle
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.m3u.smartphone.ui.App
-import com.m3u.smartphone.ui.AppViewModel
-import com.m3u.smartphone.ui.common.helper.Helper
-import com.m3u.smartphone.ui.common.internal.Toolkit
-import dagger.hilt.android.AndroidEntryPoint
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
-@AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
-    private val viewModel: AppViewModel by viewModels()
+@Composable
+fun SportsPage() {
+    // قائمة القنوات الرياضية
+    val sportsChannels = listOf(
+        "⚽ beIN Sports 1",
+        "⚽ beIN Sports 2",
+        "⚽ beIN Sports 3",
+        "🏆 Sky Sports",
+        "🏆 ESPN",
+        "⚽ Dubai Sports",
+        "🏆 Abu Dhabi Sports"
+    )
 
-    private val helper: Helper = Helper(this)
-
-    override fun onResume() {
-        super.onResume()
-        helper.applyConfiguration()
-    }
-
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        helper.applyConfiguration()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
-        setContent {
-            Toolkit(helper) {
-                App(
-                    viewModel = viewModel
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+        Text(
+            text = "🏆 القنوات الرياضية",
+            fontSize = 24.sp,
+            modifier = Modifier.padding(bottom = 16.dp)
+        )
+        
+        LazyColumn {
+            items(sportsChannels) { channel ->
+                Text(
+                    text = channel,
+                    modifier = Modifier.padding(vertical = 8.dp),
+                    fontSize = 18.sp
                 )
             }
         }
